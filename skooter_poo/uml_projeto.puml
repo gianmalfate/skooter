@@ -1,0 +1,265 @@
+@startuml
+class Controler.Vida {
+- int vida_cont
++ void update(Observable,Object)
+}
+class Controler.Fase {
+- Skoot skoot
+- Robo roboAzul
+- Robo roboAmarelo
+- Robo roboRosa
+- Robo roboVerde
+- ArrayList<Personagem> personagens
+- int faseAtual
++ <<Create>> Fase()
++ ArrayList<Personagem> getPersonagensFase(int)
++ Skoot getSkoot()
++ Robo getRoboAzul()
++ Robo getRoboAmarelo()
++ Robo getRoboRosa()
++ Robo getRoboVerde()
+- void cenarioFase1()
+- void cenarioFase2()
+- void cenarioFase3()
+- void cenarioFase4()
+- void cenarioFase5()
+- void cenarioFaseBonus()
+- void addPersonagem(Personagem)
++ int getFaseAtual()
+}
+class Auxiliar.Posicao {
+- int linha
+- int coluna
+- int linhaAnterior
+- int colunaAnterior
++ <<Create>> Posicao(int,int)
++ boolean setPosicao(int,int)
++ int getLinha()
++ boolean volta()
++ int getColuna()
++ boolean igual(Posicao)
++ boolean copia(Posicao)
++ boolean moveUp()
++ boolean moveDown()
++ boolean moveRight()
++ boolean moveLeft()
+}
+class Modelo.CuboVermelho {
++ <<Create>> CuboVermelho(String)
++ void autoDesenho()
+}
+class Modelo.Seta {
++ <<Create>> Seta(String,String)
++ void autoDesenho()
+}
+abstract class Modelo.Personagem {
+# boolean bTransponivel
+# boolean bMortal
+# boolean bColetavel
+# String arrowType
+# boolean destroy
+# boolean movable
+# boolean arrow
+# int iPontos
+# ImageIcon iImage
+# Posicao pPosicao
+# <<Create>> Personagem(String)
++ Posicao getPosicao()
++ boolean isbTransponivel()
++ void setbTransponivel(boolean)
++ boolean setPosicao(int,int)
++ void setDestroy(boolean)
++ void setMovable(boolean)
++ boolean moveUp()
++ boolean moveDown()
++ boolean moveRight()
++ boolean moveLeft()
++ void autoDesenho()
++ boolean getDestroy()
++ boolean getMortal()
++ boolean isArrow()
++ String getArrowType()
++ boolean ehColetavel()
++ int getPontos()
++ boolean isMovable()
+}
+class Modelo.Morango {
++ <<Create>> Morango(String)
++ void autoDesenho()
++ String toString()
+}
+class Modelo.Cereja {
++ <<Create>> Cereja(String)
++ void autoDesenho()
++ String toString()
+}
+class Modelo.Robo {
+- Random r
+- int intervalo
++ <<Create>> Robo(String)
++ void autoDesenho()
++ void voltaAUltimaPosicao()
+}
+class Auxiliar.Desenho {
+~ {static} Tela ondeDesenhar
++ {static} void setCenario(Tela)
++ {static} Tela getTelaDoJogo()
++ {static} void desenhar(ImageIcon,int,int)
+- {static} Graphics getGraphicsDaTela()
+}
+class Modelo.Ferramenta {
++ <<Create>> Ferramenta(String)
++ void autoDesenho()
++ String toString()
+}
+class Controler.ObservaVida {
+- int vida_cont
++ void update(Observable,Object)
+}
+class Modelo.Sol {
++ <<Create>> Sol(String)
++ void autoDesenho()
++ String toString()
+}
+class Controler.ControleDeJogo {
+- int pontuacao_cont
+- int vida_cont
+- boolean perdeu_vida
+~ <<Create>> ControleDeJogo()
++ void desenhaTudo(ArrayList<Personagem>)
++ void processaTudo(ArrayList<Personagem>)
++ boolean ehPosicaoValida(ArrayList<Personagem>,Personagem)
++ void menosVida()
++ int getVida()
++ boolean estaMorto()
++ void resetaVida()
++ boolean perdeuVida()
++ int getPontuacao()
++ void zeraPontos()
++ boolean fimDaFase(ArrayList<Personagem>)
+}
+class Modelo.CuboVerde {
++ <<Create>> CuboVerde(String)
++ void autoDesenho()
+}
+class Modelo.Item {
++ <<Create>> Item(String)
+}
+class Modelo.Lampada {
++ <<Create>> Lampada(String)
++ void autoDesenho()
++ String toString()
+}
+class Modelo.Uva {
++ <<Create>> Uva(String)
++ void autoDesenho()
++ String toString()
+}
+class Controler.Tela {
+- Skoot skoot
+- Robo roboAzul
+- Robo roboAmarelo
+- Robo roboRosa
+- Robo roboVerde
+- ArrayList<Personagem> personagens
+- ControleDeJogo cj
+- Graphics g2
+- Fase fase
++ <<Create>> Tela()
++ boolean ehPosicaoValida(Robo)
++ void addPersonagem(Personagem)
++ void removePersonagem(Personagem)
++ Graphics getGraphicsBuffer()
++ void paint(Graphics)
++ void go()
++ void keyPressed(KeyEvent)
++ void mousePressed(MouseEvent)
+- void initComponents()
++ void mouseMoved(MouseEvent)
++ void mouseClicked(MouseEvent)
++ void mouseReleased(MouseEvent)
++ void mouseEntered(MouseEvent)
++ void mouseExited(MouseEvent)
++ void mouseDragged(MouseEvent)
++ void keyTyped(KeyEvent)
++ void keyReleased(KeyEvent)
++ void moveCubo(KeyEvent,String)
+- void resetaFase(int)
+- boolean verificaSePodeMover(String)
+- void moveSeta(String)
+}
+class Auxiliar.Consts {
++ {static} int CELL_SIDE
++ {static} int RES
++ {static} int INTERVALO
++ {static} int DIFICULDADE_JOGO
++ {static} int QTDVIDAS
++ {static} int QTDFASES
++ {static} String PATH_SALVAR
++ {static} String PATH
+}
+class Modelo.Vela {
++ <<Create>> Vela(String)
++ void autoDesenho()
++ String toString()
+}
+class Modelo.CuboVerdePreto {
++ <<Create>> CuboVerdePreto(String)
++ void autoDesenho()
+}
+class Modelo.Main {
++ {static} void main(String[])
+}
+class Modelo.Limao {
++ <<Create>> Limao(String)
++ void autoDesenho()
++ String toString()
+}
+class Modelo.CuboVermelhoPreto {
++ <<Create>> CuboVermelhoPreto(String)
++ void autoDesenho()
+}
+class Modelo.Skoot {
+- String direcao
+- {static} Skoot skoot
+- int vidas
+- <<Create>> Skoot(String)
++ void voltaAUltimaPosicao()
++ String getDirecao()
++ void setDirecao(String)
++ int getVidas()
++ void setVidas(int)
++ {static} Skoot getInstance()
+}
+
+
+java.util.Observer <|.. Controler.Vida
+java.io.Serializable <|.. Controler.Fase
+java.io.Serializable <|.. Auxiliar.Posicao
+Modelo.Personagem <|-- Modelo.CuboVermelho
+Modelo.Personagem <|-- Modelo.Seta
+java.io.Serializable <|.. Modelo.Personagem
+java.util.Observable <|-- Modelo.Personagem
+Modelo.Item <|-- Modelo.Morango
+Modelo.Item <|-- Modelo.Cereja
+Modelo.Personagem <|-- Modelo.Robo
+java.io.Serializable <|.. Auxiliar.Desenho
+Modelo.Item <|-- Modelo.Ferramenta
+java.util.Observer <|.. Controler.ObservaVida
+Modelo.Item <|-- Modelo.Sol
+java.io.Serializable <|.. Controler.ControleDeJogo
+Modelo.Personagem <|-- Modelo.CuboVerde
+Modelo.Personagem <|-- Modelo.Item
+Modelo.Item <|-- Modelo.Lampada
+Modelo.Item <|-- Modelo.Uva
+Controler.MouseListener <|.. Controler.Tela
+Controler.KeyListener <|.. Controler.Tela
+Controler.Serializable <|.. Controler.Tela
+Controler.JFrame <|-- Controler.Tela
+Modelo.Item <|-- Modelo.Vela
+Modelo.Personagem <|-- Modelo.CuboVerdePreto
+Modelo.Item <|-- Modelo.Limao
+Modelo.Personagem <|-- Modelo.CuboVermelhoPreto
+java.io.Serializable <|.. Modelo.Skoot
+Modelo.Personagem <|-- Modelo.Skoot
+@enduml
